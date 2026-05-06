@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Backroom Archive</title>
+  <link rel="icon" type="image/png" href="assets/backroom-archive-logo-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="bg" aria-hidden="true"></div>
+
+<div class="stage">
+
+  <!-- ===================== LANDING ===================== -->
+  <section class="landing" id="landing" data-screen-label="01 Landing">
+    <div class="landing-inner">
+      <div class="logo" aria-label="Backroom Archive">
+        <img src="assets/backroom-archive-logo.png" alt="Backroom Archive" />
+      </div>
+
+      <div class="tagline">
+        Rare finds. Forgotten icons. <span class="accent">Kept off the map.</span>
+      </div>
+
+      <button class="cta" id="open-scan" aria-haspopup="dialog">
+        <span>Access the Archive</span>
+        <span class="chev">&rsaquo;</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===================== ARCHIVE (hidden until unlocked) ===================== -->
+  <section class="archive" id="archive" data-screen-label="02 Archive" aria-hidden="true">
+    <header class="archive-header">
+      <a class="brand" href="#" id="brand-lock" aria-label="Lock the vault and return to the entrance">
+        <img src="assets/backroom-archive-logo.png" alt="Backroom Archive" />
+      </a>
+      <div class="archive-header-right">
+        <div class="meta">
+          <div>Vault &nbsp;//&nbsp; <span class="gold">Authenticated</span></div>
+          <div id="drawer-label">Index 00 &nbsp;//&nbsp; Drawer A · Physical Product</div>
+        </div>
+        <a class="lock-cta" href="#" id="lock">Lock the vault &nbsp;&times;</a>
+      </div>
+    </header>
+
+    <h1 class="archive-title">The Index</h1>
+    <p class="archive-sub">A curated catalogue across <span class="gold">five</span> drawers · Updated quarterly</p>
+
+    <div class="drawer-row" id="drawer-row"></div>
+
+    <div class="drawer-content">
+      <div class="grid" id="grid">
+        <!-- entry cards injected by JS -->
+      </div>
+      <div class="drawer-empty" id="drawer-empty" hidden>
+        <div class="badge">Coming soon</div>
+        <h3 id="drawer-empty-title">This drawer is being catalogued</h3>
+        <p>New entries arrive quarterly. Open Drawer A · Physical Product for what is on file today.</p>
+      </div>
+    </div>
+
+    <footer class="archive-footer">
+      <div>© Backroom Archive — Off the map</div>
+      <div>By <a class="credit" href="https://www.sighencea.com" target="_blank" rel="noopener">Sighencea.com</a></div>
+    </footer>
+  </section>
+
+</div>
+
+<!-- security scan modal -->
+<div class="scrim" id="scan-scrim" role="dialog" aria-modal="true" aria-label="Security scan">
+  <div class="security-modal">
+    <div class="security-head">
+      <span class="security-dot" aria-hidden="true"></span>
+      <span class="security-title">Secure Terminal</span>
+      <span class="security-id">BR // Vault 00</span>
+    </div>
+    <ul class="security-log" id="security-log" aria-live="polite"></ul>
+    <div class="security-bar" aria-hidden="true"><div class="security-bar-fill" id="security-bar-fill"></div></div>
+    <div class="security-grant" id="security-grant">Access Granted</div>
+  </div>
+</div>
+
+<!-- project / drawer placeholder modal -->
+<div class="scrim" id="proj-scrim" role="dialog" aria-modal="true">
+  <div class="project">
+    <div class="badge">Coming soon</div>
+    <h3 id="proj-title">Entry</h3>
+    <p id="proj-body">This entry is still being catalogued. Check back soon — the vault is updated quarterly.</p>
+    <button class="btn" id="proj-close">Close</button>
+  </div>
+</div>
+
+<div class="landing-credit" id="landing-credit">By <a href="https://www.sighencea.com" target="_blank" rel="noopener">Sighencea.com</a></div>
+
+<div class="flash" id="flash" aria-hidden="true"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
