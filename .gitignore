@@ -1,0 +1,13 @@
+# Local design references — not for deployment
+draft/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Source PNGs once converted (kept locally as masters if needed, not deployed)
+og-image-full.png

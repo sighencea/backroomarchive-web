@@ -24,6 +24,21 @@ const SECURITY_STEPS = [
 const AUTH_KEY = "backroom_auth_at";
 const AUTH_WINDOW_MS = 15 * 60 * 1000;
 
+const SUCCESS_SFX = new Audio("assets/system-infiltrated.mp3");
+SUCCESS_SFX.preload = "auto";
+SUCCESS_SFX.volume = 0.8;
+
+const ALERT_SFX = new Audio("assets/ui-alert.mp3");
+ALERT_SFX.preload = "auto";
+ALERT_SFX.volume = 0.7;
+
+const playSfx = (audio) => {
+  try {
+    audio.currentTime = 0;
+    audio.play().catch(() => {});
+  } catch (_) {}
+};
+
 const isStillAuthenticated = () => {
   const ts = parseInt(localStorage.getItem(AUTH_KEY) || "0", 10);
   return ts > 0 && (Date.now() - ts) < AUTH_WINDOW_MS;
@@ -38,6 +53,8 @@ async function runSecurityScan() {
   if (scanRunning) return;
   scanRunning = true;
   openBtn.disabled = true;
+
+  playSfx(ALERT_SFX);
 
   scanLog.innerHTML = "";
   scanGrant.classList.remove("show");
@@ -78,6 +95,9 @@ async function runSecurityScan() {
       line.classList.add("done");
       line.querySelector(".security-status").textContent = "OK";
     }
+
+    // last step completed — play the success chime
+    playSfx(SUCCESS_SFX);
 
     await wait(260);
     scanGrant.classList.add("show");
@@ -129,14 +149,21 @@ $("brand-lock").addEventListener("click", lockVault);
 
 /* ---------- entry catalogue (Drawer A · Physical Product) ---------- */
 const PHYSICAL_ENTRIES = [
-  { i: "001", t: "Tape//Lock",        d: "Hardware encryption · Cassette ritual",  href: "tape-lock.html",        live: true },
-  { i: "002", t: "Save//State Vault", d: "NFC memory-card vault · 1999 nostalgia", href: "save-state-vault.html", live: true },
-  { i: "003", t: "Catalogue III",  d: "Object lesson · Brass" },
-  { i: "004", t: "Catalogue IV",   d: "Marginalia · Folio 11" },
-  { i: "005", t: "Catalogue V",    d: "Print run · Limited" },
-  { i: "006", t: "Catalogue VI",   d: "Dossier · Restricted" },
-  { i: "007", t: "Catalogue VII",  d: "Inventory · Ledger 42" },
-  { i: "008", t: "Catalogue VIII", d: "Acquisition · Pending" },
+  { i: "001", t: "Save//State Vault", d: "NFC memory-card vault · 1999 nostalgia",     href: "save-state-vault.html", live: true },
+  { i: "002", t: "Rewind//01",        d: "Cassette-style scrub wheel · Haptic deck",   href: "rewind-01.html",        live: true },
+  { i: "003", t: "Flpy//Stack",       d: "Modular floppy-disk desk system",            href: "flpy-stack.html",       live: true },
+  { i: "004", t: "CRT//Lamp",         d: "Phosphor-glow desk lamp",                    href: "crt-lamp.html",         live: true },
+  { i: "005", t: "Dial//01",          d: "Rotary macro controller · Click feedback",   href: "dial-01.html",          live: true },
+  { i: "006", t: "Walk//Case",        d: "Walkman-inspired EDC carry system",          href: "walk-case.html",        live: true },
+  { i: "007", t: "Boot//Sequence",    d: "Toggle-switch routine panel",                href: "boot-sequence.html",    live: true },
+  { i: "008", t: "Tape//Lock",        d: "Hardware encryption · Cassette ritual",      href: "tape-lock.html",        live: true },
+  { i: "009", t: "Pixel//Frame",      d: "Mechanical flip-tile screenless display",    href: "pixel-frame.html",      live: true },
+  { i: "010", t: "Cart//Case",        d: "Game-cartridge profile switcher",            href: "cart-case.html",        live: true },
+  { i: "011", t: "Sync//Dock",        d: "PDA-cradle focus dock · Disconnect ritual",  href: "sync-dock.html",        live: true },
+  { i: "012", t: "Key//Board 84",     d: "Terminal-inspired mechanical keyboard",      href: "key-board-84.html",     live: true },
+  { i: "013", t: "Signal//Meter",     d: "Analog focus gauge · Walnut housing",        href: "signal-meter.html",     live: true },
+  { i: "014", t: "Offline//Box",      d: "Faraday-lined disconnect lockbox",           href: "offline-box.html",      live: true },
+  { i: "015", t: "Mod//Phone",        d: "Modular Nokia-inspired smart hub",           href: "mod-phone.html",        live: true },
 ];
 
 /* ---------- drawer / sub-vault definitions ---------- */
@@ -149,6 +176,7 @@ const DRAWERS = [
 ];
 
 const drawerRow    = $("drawer-row");
+const drawerSelect = $("drawer-select");
 const drawerLabel  = $("drawer-label");
 const drawerEmpty  = $("drawer-empty");
 const drawerEmptyTitle = $("drawer-empty-title");
@@ -159,6 +187,7 @@ let renderedDrawerId = null;
 
 function renderDrawerCards() {
   drawerRow.innerHTML = "";
+  drawerSelect.innerHTML = "";
   DRAWERS.forEach((d) => {
     const btn = document.createElement("button");
     btn.type = "button";
@@ -174,8 +203,16 @@ function renderDrawerCards() {
     `;
     btn.addEventListener("click", () => selectDrawer(d.id));
     drawerRow.appendChild(btn);
+
+    const opt = document.createElement("option");
+    opt.value = d.id;
+    opt.textContent = `Drawer ${d.letter} · ${d.name}` + (d.live ? "" : " — Coming soon");
+    if (d.id === activeDrawerId) opt.selected = true;
+    drawerSelect.appendChild(opt);
   });
 }
+
+drawerSelect.addEventListener("change", (e) => selectDrawer(e.target.value));
 
 function renderEntries(entries) {
   grid.innerHTML = "";
@@ -219,6 +256,7 @@ function selectDrawer(id) {
   document.querySelectorAll(".drawer-card").forEach((c) => {
     c.classList.toggle("active", c.dataset.drawer === id);
   });
+  drawerSelect.value = id;
 
   drawerLabel.innerHTML = `Index 00 &nbsp;//&nbsp; Drawer ${d.letter} · ${d.name}`;
 
