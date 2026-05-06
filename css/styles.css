@@ -46,7 +46,7 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: 0;
-  background-image: url("assets/backroom-archive-web-bg.jpg");
+  background-image: url("../assets/backroom-archive-web-bg.jpg");
   background-repeat: no-repeat;
   background-position: right center;
   background-size: cover;
@@ -599,6 +599,7 @@ body.archive-open .landing-credit { opacity: 0; pointer-events: none; }
 .archive.show .card:nth-child(13) { animation-delay: 1420ms; }
 .archive.show .card:nth-child(14) { animation-delay: 1480ms; }
 .archive.show .card:nth-child(15) { animation-delay: 1540ms; }
+.archive.show .card:nth-child(16) { animation-delay: 1600ms; }
 
 @keyframes cardIn {
   from { opacity: 0; transform: translateY(14px); }

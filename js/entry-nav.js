@@ -17,6 +17,7 @@
     "signal-meter",
     "offline-box",
     "mod-phone",
+    "load-screen",
   ];
 
   const slug = location.pathname

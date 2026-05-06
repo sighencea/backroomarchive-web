@@ -32,7 +32,7 @@ body::before {
 
 .bg {
   position: fixed; inset: 0; z-index: 0;
-  background: #000 url("assets/backroom-archive-web-bg.jpg") right center / cover no-repeat;
+  background: #000 url("../assets/backroom-archive-web-bg.jpg") right center / cover no-repeat;
   pointer-events: none;
   opacity: 0.45;
 }

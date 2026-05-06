@@ -149,21 +149,22 @@ $("brand-lock").addEventListener("click", lockVault);
 
 /* ---------- entry catalogue (Drawer A · Physical Product) ---------- */
 const PHYSICAL_ENTRIES = [
-  { i: "001", t: "Save//State Vault", d: "NFC memory-card vault · 1999 nostalgia",     href: "save-state-vault.html", live: true },
-  { i: "002", t: "Rewind//01",        d: "Cassette-style scrub wheel · Haptic deck",   href: "rewind-01.html",        live: true },
-  { i: "003", t: "Flpy//Stack",       d: "Modular floppy-disk desk system",            href: "flpy-stack.html",       live: true },
-  { i: "004", t: "CRT//Lamp",         d: "Phosphor-glow desk lamp",                    href: "crt-lamp.html",         live: true },
-  { i: "005", t: "Dial//01",          d: "Rotary macro controller · Click feedback",   href: "dial-01.html",          live: true },
-  { i: "006", t: "Walk//Case",        d: "Walkman-inspired EDC carry system",          href: "walk-case.html",        live: true },
-  { i: "007", t: "Boot//Sequence",    d: "Toggle-switch routine panel",                href: "boot-sequence.html",    live: true },
-  { i: "008", t: "Tape//Lock",        d: "Hardware encryption · Cassette ritual",      href: "tape-lock.html",        live: true },
-  { i: "009", t: "Pixel//Frame",      d: "Mechanical flip-tile screenless display",    href: "pixel-frame.html",      live: true },
-  { i: "010", t: "Cart//Case",        d: "Game-cartridge profile switcher",            href: "cart-case.html",        live: true },
-  { i: "011", t: "Sync//Dock",        d: "PDA-cradle focus dock · Disconnect ritual",  href: "sync-dock.html",        live: true },
-  { i: "012", t: "Key//Board 84",     d: "Terminal-inspired mechanical keyboard",      href: "key-board-84.html",     live: true },
-  { i: "013", t: "Signal//Meter",     d: "Analog focus gauge · Walnut housing",        href: "signal-meter.html",     live: true },
-  { i: "014", t: "Offline//Box",      d: "Faraday-lined disconnect lockbox",           href: "offline-box.html",      live: true },
-  { i: "015", t: "Mod//Phone",        d: "Modular Nokia-inspired smart hub",           href: "mod-phone.html",        live: true },
+  { i: "001", t: "Save//State Vault", d: "NFC memory-card vault · 1999 nostalgia",     href: "products/save-state-vault.html", live: true },
+  { i: "002", t: "Rewind//01",        d: "Cassette-style scrub wheel · Haptic deck",   href: "products/rewind-01.html",        live: true },
+  { i: "003", t: "Flpy//Stack",       d: "Modular floppy-disk desk system",            href: "products/flpy-stack.html",       live: true },
+  { i: "004", t: "CRT//Lamp",         d: "Phosphor-glow desk lamp",                    href: "products/crt-lamp.html",         live: true },
+  { i: "005", t: "Dial//01",          d: "Rotary macro controller · Click feedback",   href: "products/dial-01.html",          live: true },
+  { i: "006", t: "Walk//Case",        d: "Walkman-inspired EDC carry system",          href: "products/walk-case.html",        live: true },
+  { i: "007", t: "Boot//Sequence",    d: "Toggle-switch routine panel",                href: "products/boot-sequence.html",    live: true },
+  { i: "008", t: "Tape//Lock",        d: "Hardware encryption · Cassette ritual",      href: "products/tape-lock.html",        live: true },
+  { i: "009", t: "Pixel//Frame",      d: "Mechanical flip-tile screenless display",    href: "products/pixel-frame.html",      live: true },
+  { i: "010", t: "Cart//Case",        d: "Game-cartridge profile switcher",            href: "products/cart-case.html",        live: true },
+  { i: "011", t: "Sync//Dock",        d: "PDA-cradle focus dock · Disconnect ritual",  href: "products/sync-dock.html",        live: true },
+  { i: "012", t: "Key//Board 84",     d: "Terminal-inspired mechanical keyboard",      href: "products/key-board-84.html",     live: true },
+  { i: "013", t: "Signal//Meter",     d: "Analog focus gauge · Walnut housing",        href: "products/signal-meter.html",     live: true },
+  { i: "014", t: "Offline//Box",      d: "Faraday-lined disconnect lockbox",           href: "products/offline-box.html",      live: true },
+  { i: "015", t: "Mod//Phone",        d: "Modular Nokia-inspired smart hub",           href: "products/mod-phone.html",        live: true },
+  { i: "016", t: "Load//Screen",      d: "Ambient CRT-style progress display",         href: "products/load-screen.html",      live: true },
 ];
 
 /* ---------- drawer / sub-vault definitions ---------- */
