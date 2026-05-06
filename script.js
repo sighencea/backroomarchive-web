@@ -233,7 +233,6 @@ function selectDrawer(id) {
     grid.hidden = true;
     drawerEmpty.hidden = false;
     drawerEmptyTitle.textContent = `Drawer ${d.letter} · ${d.name} is being catalogued`;
-    openPopup(d.name, `Drawer ${d.letter} · ${d.name} is being catalogued. New entries arrive quarterly — check back soon.`);
   }
 }
 

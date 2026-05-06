@@ -47,6 +47,7 @@ body::before {
   background-position: right center;
   background-size: cover;
   background-color: #000;
+  filter: brightness(0.78);
   pointer-events: none;
 }
 @media (max-aspect-ratio: 3/2) {
@@ -58,39 +59,38 @@ body::before {
 
 /* ============ SCENE: LANDING ============ */
 .landing {
+  position: relative;
   min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 6vh 6vw;
+  padding: 0 6vw;
+  box-sizing: border-box;
   transition: opacity 1100ms ease, filter 1100ms ease;
 }
 .landing.fade-out { opacity: 0; filter: blur(4px); pointer-events: none; }
 
-.landing-inner {
-  width: min(760px, 92vw);
-  transform: translateX(-8%);
-  text-align: center;
-}
-@media (max-width: 820px) {
-  .landing-inner { transform: none; }
-}
-
-.logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 22px;
-  color: var(--cream);
+.landing .logo {
+  display: flex;
+  justify-content: center;
+  padding-top: 14vh;
   filter: drop-shadow(0 2px 18px rgba(0,0,0,0.6));
 }
-.logo img {
+.landing .logo img {
   display: block;
-  width: clamp(320px, 44vw, 560px);
+  width: clamp(280px, 38vw, 480px);
   height: auto;
   filter: drop-shadow(0 2px 18px rgba(0,0,0,0.5));
 }
 
+.landing-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(760px, 92vw);
+  text-align: center;
+}
+
 .tagline {
-  margin: 44px auto 0;
+  margin: 0 auto;
   font-size: clamp(14px, 1.4vw, 17px);
   letter-spacing: 0.32em;
   color: var(--cream-dim);
@@ -99,16 +99,16 @@ body::before {
 .tagline .accent { color: var(--gold); }
 
 .cta {
-  margin-top: 50px;
+  margin-top: 44px;
   display: inline-flex;
   align-items: center;
-  gap: 16px;
-  padding: 22px 40px;
+  gap: 14px;
+  padding: 18px 34px;
   background: transparent;
   border: 1px solid var(--line);
   color: var(--cream);
   font: inherit;
-  font-size: clamp(14px, 1.3vw, 17px);
+  font-size: clamp(13px, 1.2vw, 16px);
   letter-spacing: 0.34em;
   text-transform: uppercase;
   cursor: pointer;
@@ -310,7 +310,7 @@ body.archive-open .landing-credit { opacity: 0; pointer-events: none; }
 .archive {
   position: absolute; inset: 0;
   min-height: 100vh;
-  padding: 64px 8vw 0;
+  padding: 64px 8vw 100px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 1200ms ease 200ms;
@@ -639,8 +639,15 @@ body.archive-open .landing-credit { opacity: 0; pointer-events: none; }
 }
 
 .archive-footer {
-  margin-top: 80px;
-  padding: 30px 0 80px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-top: 0;
+  padding: 18px 8vw;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-top: 1px solid var(--line-soft);
   display: flex;
   justify-content: space-between;
@@ -649,6 +656,7 @@ body.archive-open .landing-credit { opacity: 0; pointer-events: none; }
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--cream-dim);
+  z-index: 10;
 }
 .archive-footer a { color: var(--cream-dim); text-decoration: none; }
 .archive-footer a:hover { color: var(--gold); }
